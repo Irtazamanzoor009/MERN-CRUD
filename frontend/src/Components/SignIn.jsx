@@ -17,27 +17,31 @@ const SignIn = () => {
 
   const onsubmit = async (data) => {
     setisLoading(true);
-    const response = await fetch("http://localhost:4001/user/signin", {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: { "Content-Type": "Application/json" },
-    });
+    try {
+      const response = await fetch("http://localhost:4001/user/signin", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: { "Content-Type": "Application/json" },
+      });
 
-    const result = await response.json();
-    if (!result.success) {
-      setserverError(result.message);
-      setTimeout(() => {
-        setserverError("");
-        setisLoading(false);
-      }, 1500);
-      return;
-    } else if (result.success) {
-      localStorage.setItem("email", result.userData.email);
-      setTimeout(() => {
-        setisLoading(false);
-      }, 300);
-      toast.success("Login Successful");
-      navigate("/");
+      const result = await response.json();
+      if (!result.success) {
+        setserverError(result.message);
+        setTimeout(() => {
+          setserverError("");
+          setisLoading(false);
+        }, 1500);
+        return;
+      } else if (result.success) {
+        localStorage.setItem("email", result.userData.email);
+        setTimeout(() => {
+          setisLoading(false);
+        }, 300);
+        toast.success("Login Successful");
+        navigate("/");
+      }
+    } catch (error) {
+      toast.error("Internal Server Error");
     }
   };
 
@@ -48,9 +52,13 @@ const SignIn = () => {
           <div className="box">
             <h3>Sign In</h3>
             {serverError && <div className="msgs red">{serverError}</div>}
-            {errors.email && <div className="msgs red">{errors.email.message}</div>}
+            {errors.email && (
+              <div className="msgs red">{errors.email.message}</div>
+            )}
 
-            {errors.password && <div className="msgs red">{errors.password.message}</div>}
+            {errors.password && (
+              <div className="msgs red">{errors.password.message}</div>
+            )}
             <form
               className="sign-form"
               action=""
@@ -67,7 +75,7 @@ const SignIn = () => {
                 type="password"
                 placeholder="Enter Password"
                 {...register("password", {
-                  required: { value: true, message: "Please Enter password" }
+                  required: { value: true, message: "Please Enter password" },
                 })}
               />
               <button type="submit">

@@ -8,10 +8,10 @@ const port = 4001;
 app.use(express.json());
 app.use(cors());
 
-app.use('/',(req,res)=>{
-    console.log("test successfull");
-    res.send("testing....")
-})
+// app.use('/',(req,res)=>{
+//     console.log("test successfull");
+//     res.send("testing....")
+// })
 
 app.use('/user', require('./Routes/createuser'));
 app.use('/products', require('./Routes/createproducts'));
