@@ -19,7 +19,8 @@ const SignUp = () => {
     setisLoading(true);
     setserverError("");
     try {
-      const response = await fetch("http://localhost:4001/user/signup", {
+      const response = await fetch("https://mern-crud-eight-xi.vercel.app/user/signup", {
+      // const response = await fetch("http://localhost:4001/user/signup", {
         method: "POST",
         body: JSON.stringify(data),
         headers: { "Content-Type": "application/json" },

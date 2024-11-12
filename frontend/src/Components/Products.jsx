@@ -37,7 +37,7 @@ const Products = () => {
   const LoadData = async () => {
     try
     {
-      const response = await fetch("http://localhost:4001/products/allproducts", {
+      const response = await fetch("https://mern-crud-eight-xi.vercel.app/products/allproducts", {
         method: "GET",
         headers: { "Content-Type": "application/json" },
       });
@@ -53,7 +53,7 @@ const Products = () => {
   const onsubmit = async (data) => {
     setisLoading(true);
     const response = await fetch(
-      "http://localhost:4001/products/createproduct",
+      "https://mern-crud-eight-xi.vercel.app/products/createproduct",
       {
         method: "POST",
         body: JSON.stringify(data),
@@ -71,7 +71,7 @@ const Products = () => {
 
   const handleDeleteClick = async (id) => {
     const response = await fetch(
-      "http://localhost:4001/products/deleteProduct",
+      "https://mern-crud-eight-xi.vercel.app/products/deleteProduct",
       {
         method: "DELETE",
         body: JSON.stringify({ id }),
@@ -95,7 +95,7 @@ const Products = () => {
 
   const onUpdateSubmit = async (data) => {
     const response = await fetch(
-      `http://localhost:4001/products/updateproduct/${editProduct._id}`,
+      `https://mern-crud-eight-xi.vercel.app/products/updateproduct/${editProduct._id}`,
       {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
