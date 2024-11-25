@@ -51,7 +51,7 @@ const SignIn = () => {
         <div className="container">
           <div className="box">
             <h3>Sign In</h3>
-            {serverError && <div className="msgs red">{serverError}</div>}
+            {serverError && <div id="error-msgs" className="msgs red">{serverError}</div>}
             {errors.email && (
               <div className="msgs red">{errors.email.message}</div>
             )}
