@@ -67,6 +67,7 @@ const SignIn = () => {
               <input
                 type="email"
                 placeholder="Enter Email"
+                id="email"
                 {...register("email", {
                   required: { value: true, message: "Please Enter Email" },
                 })}
@@ -74,11 +75,12 @@ const SignIn = () => {
               <input
                 type="password"
                 placeholder="Enter Password"
+                id="password"
                 {...register("password", {
                   required: { value: true, message: "Please Enter password" },
                 })}
               />
-              <button type="submit">
+              <button id="submit_button" type="submit">
                 Sign In
                 {isLoading && <i className="fa-solid fa-spinner fa-spin"></i>}
               </button>
